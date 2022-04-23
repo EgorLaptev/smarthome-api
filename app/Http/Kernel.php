@@ -2,6 +2,8 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\ApiTokenIsValid;
+use Hamcrest\Arrays\IsArrayContainingKeyValuePairTest;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -41,6 +43,7 @@ class Kernel extends HttpKernel
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
+            ApiTokenIsValid::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
@@ -53,6 +56,7 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $routeMiddleware = [
+        'token' => ApiTokenIsValid::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
