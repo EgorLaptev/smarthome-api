@@ -18,7 +18,11 @@ class DeviceController extends Controller
      */
     public function index(Room $room)
     {
+
+        $this->authorize('view', $room);
+
         return new DeviceCollection($room->devices);
+
     }
 
     /**
@@ -40,7 +44,11 @@ class DeviceController extends Controller
      */
     public function show(Device $device)
     {
+
+        $this->authorize('view', $device);
+
         return new DeviceResource($device);
+
     }
 
     /**
@@ -51,6 +59,8 @@ class DeviceController extends Controller
      */
     public function update(UpdateDeviceRequest $request, Device $device)
     {
+
+        $this->authorize('update', $device);
 
         $validated = $request->validated();
 

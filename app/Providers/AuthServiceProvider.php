@@ -2,6 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Device;
+use App\Models\Macro;
+use App\Models\Room;
+use App\Policies\DevicePolicy;
+use App\Policies\MacroPolicy;
+use App\Policies\RoomPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -13,7 +19,9 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        Device::class => DevicePolicy::class,
+        Macro::class => MacroPolicy::class,
+        Room::class => RoomPolicy::class,
     ];
 
     /**

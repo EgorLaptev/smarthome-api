@@ -41,6 +41,9 @@ class RoomController extends Controller
      */
     public function show(Room $room)
     {
+
+        $this->authorize('view', $room);
+
         return new RoomResource($room);
     }
 

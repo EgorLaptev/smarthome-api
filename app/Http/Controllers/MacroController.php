@@ -59,6 +59,8 @@ class MacroController extends Controller
     public function activate(Macro $macro)
     {
 
+        $this->authorize('view', $macro);
+
         $success =  false;
 
         $actions = $macro->actions;
@@ -83,6 +85,8 @@ class MacroController extends Controller
      */
     public function destroy(Macro $macro)
     {
+
+        $this->authorize('delete', $macro);
 
         $deleted = $macro->delete();
 
