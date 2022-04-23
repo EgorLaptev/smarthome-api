@@ -42,6 +42,8 @@ class User extends Authenticatable
      */
     protected $casts = [];
 
+    public $timestamps = false;
+
     public function rooms()
     {
         return $this->hasMany(Room::class);
