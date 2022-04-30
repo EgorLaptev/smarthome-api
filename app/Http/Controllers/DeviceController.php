@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 
 class DeviceController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *

@@ -9,6 +9,7 @@ use App\Models\Action;
 use App\Models\Device;
 use App\Models\Macro;
 use App\Models\User;
+use App\Providers\MacroActivated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -58,6 +59,8 @@ class MacroController extends Controller
 
     public function activate(Macro $macro)
     {
+
+        MacroActivated::dispatch($macro);
 
         $this->authorize('view', $macro);
 
