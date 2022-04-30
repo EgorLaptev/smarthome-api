@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Device;
+use App\Models\Room;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -53,7 +54,8 @@ class DevicePolicy
      */
     public function update(User $user, Device $device)
     {
-        return $user['id'] == $device['user_id'];
+        $room = Room::find($device['room_id']);
+        return $user['id'] == $room['user_id'];
     }
 
     /**
