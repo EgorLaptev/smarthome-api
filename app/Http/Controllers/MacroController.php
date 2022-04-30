@@ -60,11 +60,9 @@ class MacroController extends Controller
     public function activate(Macro $macro)
     {
 
-        MacroActivated::dispatch($macro);
-
         $this->authorize('view', $macro);
 
-        $success =  false;
+        $success = false;
 
         $actions = $macro->actions;
 
