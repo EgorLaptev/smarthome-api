@@ -31,7 +31,8 @@ class DevicePolicy
      */
     public function view(User $user, Device $device)
     {
-        return $user['id'] == $device['user_id'];
+        $room = Room::find($device['room_id']);
+        return $user['id'] == $room['user_id'];
     }
 
     /**
@@ -67,7 +68,8 @@ class DevicePolicy
      */
     public function delete(User $user, Device $device)
     {
-        return $user['id'] == $device['user_id'];
+        $room = Room::find($device['room_id']);
+        return $user['id'] == $room['user_id'];
     }
 
     /**
@@ -79,7 +81,8 @@ class DevicePolicy
      */
     public function restore(User $user, Device $device)
     {
-        return $user['id'] == $device['user_id'];
+        $room = Room::find($device['room_id']);
+        return $user['id'] == $room['user_id'];
     }
 
     /**
@@ -91,6 +94,7 @@ class DevicePolicy
      */
     public function forceDelete(User $user, Device $device)
     {
-        return $user['id'] == $device['user_id'];
+        $room = Room::find($device['room_id']);
+        return $user['id'] == $room['user_id'];
     }
 }
