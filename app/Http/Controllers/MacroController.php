@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Providers\MacroActivated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class MacroController extends Controller
 {
@@ -33,17 +34,18 @@ class MacroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMacroRequest $request)
+    public function store(/*StoreMacroRequest*/ Request $request)
     {
 
-        $validated = $request->validated();
+
+//        $validated = $request->validated();
 
         $macro = Macro::create([
-            'name' => $validated['name'],
+            'name' => $request->post('name') ?? 'macro #' . rand(0, 99999),
             'user_id' => Auth::id()
         ]);
 
-        foreach ($validated['devices'] as $action) {
+        foreach ($request->post('devices') ?? [] as $action) {
             Action::create([
                 'macro_id' => $macro['id'],
                 'device_id' => $action['id'],
@@ -51,9 +53,7 @@ class MacroController extends Controller
             ]);
         }
 
-        return response([
-            'id' => $macro['id']
-        ], 201);
+        return response($macro, 201);
 
     }
 

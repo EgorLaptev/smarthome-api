@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\ApiTokenIsValid;
+use App\Http\Middleware\Cors;
 use Hamcrest\Arrays\IsArrayContainingKeyValuePairTest;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -44,7 +45,7 @@ class Kernel extends HttpKernel
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
             ApiTokenIsValid::class,
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class
         ],
     ];
 
